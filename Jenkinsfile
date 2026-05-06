@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Simulating deployment...'
-                sh 'cp -r ./build /tmp/deployed-app'
+                bat 'cp -r ./build /tmp/deployed-app'
                 echo 'Application deployed to /tmp/deployed-app'
 
             }
