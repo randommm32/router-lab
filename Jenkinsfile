@@ -44,12 +44,30 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline FAILED — check the logs above.'
+      stage('Deploy') {
+        steps {
+            echo 'Deploying to server...'
+            sshagent(['server-ssh-key']) {
+                bat '''
+                    ssh -o StrictHostKeyChecking=no user@your.server.ip \
+                    "cd /var/www/your-app && git pull && npm install && pm2 restart app"
+                '''
+            }
         }
     }
+
+    post {
+    success {
+        mail to: 'nuacc2031@gmail.com',
+             subject: "BUILD SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+             body: "Good news! Build ${env.BUILD_URL} completed successfully."
+    }
+    failure {
+        mail to: 'nuacc2031@gmail.com',
+             subject: "BUILD FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+             body: "Build ${env.BUILD_URL} has failed. Please check the logs."
+    }
+}
+
+    
 }
