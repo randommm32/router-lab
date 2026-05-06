@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
 
 const linkStyle = ({ isActive }) => ({
   marginRight: '1rem',
