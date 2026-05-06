@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Simulating deployment...'
-                bat 'cp -r ./build /tmp/deployed-app'
+                bat 'xcopy .\\build C:\\temp\\deployed-app /E /I /Y'
                 echo 'Application deployed to /tmp/deployed-app'
 
             }
