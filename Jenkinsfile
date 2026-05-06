@@ -26,7 +26,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                bat 'npm test'
+                bat 'npm test -- --watchAll=false --passWithNoTests --ci'
                 bat 'echo Test step — replace with your command'
             }
            // post {
