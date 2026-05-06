@@ -1,1 +1,1 @@
-Jenkins CI/CD Implementation Lab Activity
+Lab Activity - Jenkins CI/CD Implementation 
