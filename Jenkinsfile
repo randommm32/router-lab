@@ -29,11 +29,11 @@ pipeline {
                 bat 'npm test'
                 bat 'echo Test step — replace with your command'
             }
-            post {
-                always {
+           // post {
+               // always {
                    // junit '**/target/surefire-reports/*.xml'
-                }
-            }
+               // }
+           // }
         }
 
         stage('Archive') {
