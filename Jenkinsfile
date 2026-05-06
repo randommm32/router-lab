@@ -26,8 +26,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'npm test'
-                sh 'echo Test step — replace with your command'
+                bat 'npm test'
+                bat 'echo Test step — replace with your command'
             }
             post {
                 always {
