@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying to server...'
-                sshagent(['server-ssh-key']) {
+                sshagent(['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y']) {
                     bat '''
                         ssh -o StrictHostKeyChecking=no user@your.server.ip ^
                         "cd /var/www/your-app && git pull && npm install && pm2 restart app"
