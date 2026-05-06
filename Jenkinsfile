@@ -42,9 +42,8 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
             }
         }
-    }
 
-    stage('Deploy') {
+        stage('Deploy') {
             steps {
                 echo 'Deploying to server...'
                 sshagent(['server-ssh-key']) {
@@ -56,6 +55,8 @@ pipeline {
             }
         }
     }
+}
+  
 
     post {
     success {
