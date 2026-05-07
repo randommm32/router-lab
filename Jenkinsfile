@@ -27,6 +27,11 @@ pipeline {
                 echo 'Running tests...'
                 bat 'npm test -- --watchAll=false --passWithNoTests --ci'
             }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                }
+            }
         }
 
         stage('Archive') {
