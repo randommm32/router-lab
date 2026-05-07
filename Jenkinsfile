@@ -22,14 +22,21 @@ pipeline {
             }
         }
 
-        stage('Test') {
+      stage('Test') {
             steps {
-                echo 'Running tests...'
-                bat 'npm test -- --watchAll=false --passWithNoTests --ci'
+                echo 'Running tests and generating report...'
+                // 1. Install the tool that converts React tests to XML
+                bat 'npm install jest-junit'
+                
+                // 2. Run the tests and output the results to 'junit.xml'
+                bat 'npm test -- --watchAll=false --passWithNoTests --ci --testResultsProcessor="jest-junit"'
             }
-        
-
-
+            post {
+                always {
+                    // 3. Tell Jenkins exactly where the new XML file is
+                    junit 'junit.xml', allowEmptyResults: true
+                }
+            }
         }
 
         stage('Archive') {
